@@ -1,3 +1,5 @@
+import sys
+
 # put your code here.
 def count_words(file_name):
     """Counts the number of times a word is used in a text file.
@@ -12,8 +14,13 @@ def count_words(file_name):
         line = line.rstrip()
         words = line.split(" ")
 
+        punctuation = [",", ".", "!", "?", ":", ";", "/", "(", ")", "{", "}", "[",
+                       "]", "|", "*", "&", "#", "$", "^"]
         # Iterating over the words to add into the dictionary
         for word in words:
+            word = word.lower()
+            if word[-1] in punctuation:
+                word = word[:-1]
             word_counts[word] = word_counts.get(word, 0) + 1
 
     text.close()
@@ -30,4 +37,5 @@ def print_dict(file_name):
     for word, count in dictionary.iteritems():
         print "{}: {}".format(word, count)
 
-print_dict("twain.txt")
+print_dict(sys.argv[1])
+
