@@ -19,6 +19,15 @@ def count_words(file_name):
     text.close()
     return word_counts
 
-print count_words("test.txt")
 
-print count_words("twain.txt")
+def print_dict(file_name):
+    """Calling the count_words function and printing each word and its count.
+    """
+
+    dictionary = count_words(file_name)
+
+    # Breaking dictionary into tuples, and printing out each key and its value
+    for word, count in dictionary.iteritems():
+        print "{}: {}".format(word, count)
+
+print_dict("twain.txt")
